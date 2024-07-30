@@ -1,4 +1,4 @@
-package tg.bot.timeLine.TelegramBotTimeLine.db.servise;
+package tg.bot.timeLine.TelegramBotTimeLine.db.service;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;

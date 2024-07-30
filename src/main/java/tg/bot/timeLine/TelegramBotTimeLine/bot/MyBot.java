@@ -11,10 +11,11 @@ import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
+import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import tg.bot.timeLine.TelegramBotTimeLine.commands.CommandsLogic;
 import tg.bot.timeLine.TelegramBotTimeLine.enums.BotCommandsList;
-import tg.bot.timeLine.TelegramBotTimeLine.db.servise.RepositoryService;
+import tg.bot.timeLine.TelegramBotTimeLine.db.service.RepositoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,17 +32,6 @@ public class MyBot extends TelegramLongPollingBot {
     @Autowired
     private ApplicationContext context;
 
-    public MyBot() {
-        addMenuBar();
-    }
-
-    private void addMenuBar() {
-        List<BotCommand> botCommands = new ArrayList<>();
-        for (BotCommandsList botCommand : BotCommandsList.values()) {
-            botCommands.add(new BotCommand(botCommand.getCommand(), botCommand.getDescription()));
-        }
-//        sendMessage(new SetMyCommands(botCommands, new BotCommandScopeDefault(), null));
-    }
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -65,14 +55,6 @@ public class MyBot extends TelegramLongPollingBot {
             case CLEAR_LIST -> command.clearList(chatId);
             case REDACT_LIST -> command.redactList(chatId);
             default -> command.errorCommand(chatId);
-        }
-    }
-
-    private void sendMessage(SetMyCommands setMyCommands) {
-        try {
-            execute(setMyCommands);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
         }
     }
 

@@ -11,7 +11,6 @@ import tg.bot.timeLine.TelegramBotTimeLine.bot.MyBot;
 
 @Getter
 @Configuration
-@ComponentScan(basePackages = "tg.bot.timeLine.TelegramBotTimeLine")
 public class BotConfig {
 
     @Bean

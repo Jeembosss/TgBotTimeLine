@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import tg.bot.timeLine.TelegramBotTimeLine.bot.MyBot;
 import tg.bot.timeLine.TelegramBotTimeLine.db.entity.User;
 import tg.bot.timeLine.TelegramBotTimeLine.enums.BotMessagesList;
-import tg.bot.timeLine.TelegramBotTimeLine.db.servise.RepositoryService;
+import tg.bot.timeLine.TelegramBotTimeLine.db.service.RepositoryService;
 
 
 @Log4j2
