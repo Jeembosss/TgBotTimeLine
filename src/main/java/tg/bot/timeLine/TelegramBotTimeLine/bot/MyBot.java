@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -14,6 +15,7 @@ import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScope
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import tg.bot.timeLine.TelegramBotTimeLine.commands.CommandsLogic;
 import tg.bot.timeLine.TelegramBotTimeLine.enums.BotCommandsList;
+import tg.bot.timeLine.TelegramBotTimeLine.servise.RepositoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,9 @@ public class MyBot extends TelegramLongPollingBot {
     @Value("${bot.username}")
     private String botUsername;
 
+    @Autowired
+    private ApplicationContext context;
+
     public MyBot() {
         addMenuBar();
     }
@@ -36,7 +41,7 @@ public class MyBot extends TelegramLongPollingBot {
         for (BotCommandsList botCommand : BotCommandsList.values()) {
             botCommands.add(new BotCommand(botCommand.getCommand(), botCommand.getDescription()));
         }
-        sendMessage(new SetMyCommands(botCommands, new BotCommandScopeDefault(), null));
+//        sendMessage(new SetMyCommands(botCommands, new BotCommandScopeDefault(), null));
     }
 
     @Override
@@ -50,7 +55,7 @@ public class MyBot extends TelegramLongPollingBot {
         String messageText = update.getMessage().getText();
         String chatId = String.valueOf(update.getMessage().getChatId());
 
-        CommandsLogic command = new CommandsLogic(this);
+        CommandsLogic command = new CommandsLogic(this, context.getBean(RepositoryService.class));
 
         switch (BotCommandsList.fromString(messageText)) {
             case START -> command.startCommand(chatId);

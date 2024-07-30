@@ -17,10 +17,9 @@ public class CommandsLogic {
     private final MyBot myBot;
     private final RepositoryService repositoryService;
 
-    public CommandsLogic(MyBot myBot) {
+    public CommandsLogic(MyBot myBot, RepositoryService repositoryService) {
         this.myBot = myBot;
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        repositoryService = context.getBean(RepositoryService.class);
+        this.repositoryService = repositoryService;
     }
 
 
