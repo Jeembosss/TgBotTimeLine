@@ -11,11 +11,10 @@ import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
-import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import tg.bot.timeLine.TelegramBotTimeLine.commands.CommandsLogic;
 import tg.bot.timeLine.TelegramBotTimeLine.enums.BotCommandsList;
-import tg.bot.timeLine.TelegramBotTimeLine.servise.RepositoryService;
+import tg.bot.timeLine.TelegramBotTimeLine.db.servise.RepositoryService;
 
 import java.util.ArrayList;
 import java.util.List;

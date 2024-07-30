@@ -1,4 +1,4 @@
-package tg.bot.timeLine.TelegramBotTimeLine.entity;
+package tg.bot.timeLine.TelegramBotTimeLine.db.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

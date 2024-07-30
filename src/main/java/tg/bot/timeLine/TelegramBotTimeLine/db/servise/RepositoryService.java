@@ -1,12 +1,12 @@
-package tg.bot.timeLine.TelegramBotTimeLine.servise;
+package tg.bot.timeLine.TelegramBotTimeLine.db.servise;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tg.bot.timeLine.TelegramBotTimeLine.entity.Event;
-import tg.bot.timeLine.TelegramBotTimeLine.entity.User;
-import tg.bot.timeLine.TelegramBotTimeLine.repositories.EventRepositories;
-import tg.bot.timeLine.TelegramBotTimeLine.repositories.UserRepositories;
+import tg.bot.timeLine.TelegramBotTimeLine.db.entity.Event;
+import tg.bot.timeLine.TelegramBotTimeLine.db.entity.User;
+import tg.bot.timeLine.TelegramBotTimeLine.db.repositories.EventRepositories;
+import tg.bot.timeLine.TelegramBotTimeLine.db.repositories.UserRepositories;
 
 import java.util.List;
 
