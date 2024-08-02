@@ -15,6 +15,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import tg.bot.timeLine.TelegramBotTimeLine.commands.CommandsLogic;
+import tg.bot.timeLine.TelegramBotTimeLine.db.service.OpenAIService;
 import tg.bot.timeLine.TelegramBotTimeLine.enums.botEnums.BotCommandsList;
 import tg.bot.timeLine.TelegramBotTimeLine.db.service.RepositoryService;
 import tg.bot.timeLine.TelegramBotTimeLine.enums.userEnums.UserState;
@@ -55,7 +56,9 @@ public class MyBot extends TelegramLongPollingBot {
     private void HandlersIncomingMessages(Update update, String chatId) {
         String messageText = update.getMessage().getText();
 
-        CommandsLogic command = new CommandsLogic(this, context.getBean(RepositoryService.class));
+        CommandsLogic command = new CommandsLogic(this, context.getBean(RepositoryService.class),
+                context.getBean(OpenAIService.class));
+
         if (repositoryService.getUserByChatId(chatId) != null) {
             switch (repositoryService.getUserStateByChatId(chatId)) {
                 case ADDING_EVENT -> command.catchMessage(chatId, messageText);

@@ -19,12 +19,12 @@ import tg.bot.timeLine.TelegramBotTimeLine.enums.userEnums.UserState;
 public class CommandsLogic {
     private final MyBot myBot;
     private final RepositoryService repositoryService;
-    @Autowired
-    private OpenAIService openAIService;
+    private final OpenAIService openAIService;
 
-    public CommandsLogic(MyBot myBot, RepositoryService repositoryService) {
+    public CommandsLogic(MyBot myBot, RepositoryService repositoryService, OpenAIService openAIService) {
         this.myBot = myBot;
         this.repositoryService = repositoryService;
+        this.openAIService = openAIService;
     }
 
 
@@ -48,7 +48,8 @@ public class CommandsLogic {
     public void catchMessage(String chatId, String message) {
         JsonToObject jsonToObject = new JsonToObject();
 
-        Event event = jsonToObject.JsonToEvent(openAIService.processEvent(message), chatId);
+        Event event = jsonToObject.JsonToEvent(openAIService.processEvent(message));
+        event.setUser(repositoryService.getUserByChatId(chatId));
         
 //        repositoryService.updateUserState(chatId, UserState.NONE);
         //не забыть юсерстейт поменять тут или в майбот в ифе самом

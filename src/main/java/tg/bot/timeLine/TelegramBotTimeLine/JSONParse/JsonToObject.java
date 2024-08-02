@@ -8,7 +8,7 @@ import tg.bot.timeLine.TelegramBotTimeLine.db.service.RepositoryService;
 
 public class JsonToObject {
 
-    public Event JsonToEvent(String json, String chatId) {
+    public Event JsonToEvent(String json) {
         ObjectMapper mapper = new ObjectMapper();
         Event event;
         try {
