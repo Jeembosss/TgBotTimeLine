@@ -1,7 +1,10 @@
 package tg.bot.timeLine.TelegramBotTimeLine.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -10,10 +13,14 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonProperty("event")
     private String description;
-    private String date;
-    private String timeStart;
-    private String timeEnd;
+    @JsonProperty("timeStart")
+    private LocalTime timeStart;
+    @JsonProperty("timeEnd")
+    private LocalTime timeEnd;
+    @JsonProperty("days")
+    private String days;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -22,20 +29,20 @@ public class Event {
     public Event() {
     }
 
-    public Event(String description, String date, User user, String timeStart) {
+    public Event(String description, User user, LocalTime timeStart, String days) {
         this.description = description;
-        this.date = date;
         this.user = user;
         this.timeStart = timeStart;
-        timeEnd = "";
+        this.days = days;
+        timeEnd = null;
     }
 
-    public Event(String description, String date, User user, String timeStart, String timeEnd) {
+    public Event(String description, User user, LocalTime timeStart, LocalTime timeEnd, String days) {
         this.description = description;
-        this.date = date;
         this.user = user;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
+        this.days = days;
     }
 
 }

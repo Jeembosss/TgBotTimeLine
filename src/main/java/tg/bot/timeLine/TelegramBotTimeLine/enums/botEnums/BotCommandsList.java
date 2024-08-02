@@ -1,4 +1,4 @@
-package tg.bot.timeLine.TelegramBotTimeLine.enums;
+package tg.bot.timeLine.TelegramBotTimeLine.enums.botEnums;
 
 import lombok.Getter;
 
@@ -10,7 +10,9 @@ public enum BotCommandsList {
     OFF_REMINDERS("/stop_reminder", "start the reminders"),
     LIST_OF_REMINDERS("/show_list_reminders", "all list of reminders"),
     CLEAR_LIST("/clear_list" , "clear all events"),
-    REDACT_LIST("/redact_list", "redact existing events");
+    REDACT_LIST("/redact_list", "redact existing events"),
+    UNKNOWN("", "");
+
 
 
     private final String command;
@@ -27,7 +29,7 @@ public enum BotCommandsList {
                 return botCommandsList;
             }
         }
-        throw new IllegalArgumentException("No enum constant for command: " + command);
+        return UNKNOWN;
     }
 
 }
